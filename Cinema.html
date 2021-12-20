@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>calendario</title>
+<script language="Javascript">
+    var lugares, x, i, col, lin;
+    lin = 0;
+    col = 0;
+    i = 0;
+    lugares = new Array(15);
+    for(x = 0; x < lugares.length; x++)
+    {
+        lugares[x] = new Array(40);
+    }
+    for(lin = 0; lin < 15; lin++)
+        {
+            for(col = 0; col < 40; col++)
+            {
+                lugares[lin][col] = false;;
+            }
+        }
+    function reservou(qualL, qualC)
+    {
+        //alert("reservou lugar " + lugares[qualL][qualC]);
+        if(lugares[qualL][qualC] == false)
+        {
+            lugares[qualL][qualC] = true;
+            document.getElementById("lug" + qualL + qualC).setAttribute("src","bolaamarela.png");
+            i = i + 1;
+        }
+        else
+        {
+            lugares[qualL][qualC] = false;
+            document.getElementById("lug" + qualL + qualC).setAttribute("src","bolaazul.png");
+            i = i - 1;
+        }
+    }
+    function total()
+    {
+        var percentual;
+        percentual = (i * 100) / 400;
+        alert("O cinema está " + percentual + "% lotado");
+    }
+
+</script>
+</head>
+
+<body>
+    <form>
+        <table>
+        <script language="Javascript">
+            for(lin = 0; lin < 15; lin++)
+            {
+                document.write("<tr>")
+                for(col = 0; col < 40; col++)
+                { 
+                    document.write("<td><img id='lug" + lin + col + "' width='20' height='30' src='bolaazul.png' onclick='reservou(" + lin + "," + col + ");'></td>");
+                    
+                }
+                document.write("</tr>")
+            }
+        </script>
+        </table>
+        <br>
+        <input type="button" value="Ocupação" onclick="total();">
+    </form>
+    <table>
+        <tr><td><img width=20 height="30" src="bolaazul.png"></td><td>Livre</td></tr>
+        <tr><td><img width=20 height="30" src="bolaamarela.png"></td><td>Ocupado</td></tr>
+    </table>
+</body>
+</html>
